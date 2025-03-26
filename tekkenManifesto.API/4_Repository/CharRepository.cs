@@ -33,7 +33,20 @@ public class CharRepository : ICharRepository
 
     public Character GetCharById(int id)
     {
-        Character chars = _tekkenContext.Chars.Find(id);
+        var chars = _tekkenContext.Chars.Find(id);
         return chars;
+    }
+
+    public Character GetCharByName(string name)
+    {
+        var chars = _tekkenContext.Chars.Where(c => c.Name == name).First();
+        return chars;
+    }
+
+    public Character UpdateChar(Character update)
+    {
+        _tekkenContext.Chars.Update(update);
+        _tekkenContext.SaveChanges();
+        return update;
     }
 }

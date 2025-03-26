@@ -6,8 +6,10 @@ namespace tekkenManifesto.API.Service;
 public interface ICharService
 {
     CharOutDTO? CreateNewChar(CharInDTO newChar);
-    CharOutDTO? DeleteChar(int id);
     IEnumerable<CharOutDTO> GetAllChars();
+    CharOutDTO UpdateChar(CharInDTO update, int id);
+    CharOutDTO? DeleteChar(int id);
+    
 }
 
 public interface IComboService

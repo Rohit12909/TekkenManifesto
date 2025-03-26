@@ -30,6 +30,27 @@ public class CharController : ControllerBase
         }
     }
 
+    [HttpGet]
+    public IActionResult GetAllChars()
+    {
+        var charList = _charService.GetAllChars();
+        return Ok(charList);
+    }
+
+    [HttpPatch("update/{id}")]
+    public IActionResult UpdateChar([FromBody] CharInDTO update, int id)
+    {
+        try
+        {
+            var updated = _charService.UpdateChar(update, id);
+            return Ok(updated);
+        }
+        catch (Exception e)
+        {
+            return Conflict(e.Message);
+        }
+    }
+
     [HttpDelete("delete/{id}")]
     public IActionResult DeleteChar(int id)
     {
@@ -44,10 +65,5 @@ public class CharController : ControllerBase
         }
     }
 
-    [HttpGet]
-    public IActionResult GetAllChars()
-    {
-        var charList = _charService.GetAllChars();
-        return Ok(charList);
-    }
+    
 }

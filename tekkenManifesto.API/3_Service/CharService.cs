@@ -32,4 +32,52 @@ public class CharService : ICharService
         var charList = _charRepository.GetAllChars();
         return _mapper.Map<List<CharOutDTO>>(charList);
     }
+
+    public CharOutDTO UpdateChar(CharInDTO update, int id)
+    {
+        var updated = _charRepository.GetCharById(id);
+
+        if (!string.IsNullOrWhiteSpace(update.Name))
+        {
+            updated.Name = update.Name;
+        }
+
+        if (!string.IsNullOrWhiteSpace(update.ImageURL))
+        {
+            updated.ImageURL = update.ImageURL;
+        }
+
+        if (!string.IsNullOrWhiteSpace(update.Origin))
+        {
+            updated.Origin = update.Origin;
+        }
+
+        if (!string.IsNullOrWhiteSpace(update.FightingStyle))
+        {
+            updated.FightingStyle = update.FightingStyle;
+        }
+        
+        if (!string.IsNullOrWhiteSpace(update.History))
+        {
+            updated.History = update.History;
+        }
+
+        if (!string.IsNullOrWhiteSpace(update.HighestRank))
+        {
+            updated.HighestRank = update.HighestRank;
+        }
+        
+        if (updated.Played is true || update.Played is true)
+        {
+            updated.Played = true;
+        }
+        else
+        {
+            updated.Played = false;
+        }
+
+        updated = _charRepository.UpdateChar(updated);
+
+        return _mapper.Map<CharOutDTO>(updated);
+    }
 }
