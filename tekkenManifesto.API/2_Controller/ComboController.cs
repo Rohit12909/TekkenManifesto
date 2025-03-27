@@ -62,55 +62,10 @@ public class ComboController : ControllerBase
         }
     }
 
-    // Heat Engagers
-    [HttpPost]
-    public IActionResult CreateNewHE([FromBody] Combo he)
-    {
-        try
-        {
-            return Ok(he);
-        }
-        catch (Exception e)
-        {
-            return NotFound(e.Message);
-        }
-    }
-
-    [HttpGet]
-    public IActionResult GetAllHE()
-    {
-        var comboList = _comboService.GetAllHE();
-        return Ok(comboList);
-    }
-
-    [HttpPatch("updateHE/{id}")]
-    public IActionResult UpdateHE([FromBody] Combo update, int id)
-    {
-        try
-        {
-            return Ok();
-        }
-        catch (Exception e)
-        {
-            return Conflict(e.Message);
-        }
-    }
-
-    [HttpDelete("deleteHE/{id}")]
-    public IActionResult DeleteHE(int id)
-    {
-        try
-        {
-            return Ok();
-        }
-        catch (Exception e)
-        {
-            return BadRequest(e.Message);
-        }
-    }
+   
 
     // Launchers
-    [HttpPost]
+    [HttpPost("launcher")]
     public IActionResult CreateLauncher([FromBody] Combo c)
     {
         try
@@ -123,7 +78,7 @@ public class ComboController : ControllerBase
         }
     }
 
-    [HttpGet]
+    [HttpGet("getLauncher")]
     public IActionResult GetAllLaunchers()
     {
         var comboList = _comboService.GetAllLaunchers();
@@ -157,7 +112,7 @@ public class ComboController : ControllerBase
     }
 
     // Stances
-    [HttpPost]
+    [HttpPost("stance")]
     public IActionResult CreateStance([FromBody] Combo c)
     {
         try
@@ -170,7 +125,7 @@ public class ComboController : ControllerBase
         }
     }
 
-    [HttpGet]
+    [HttpGet("getStance")]
     public IActionResult GetAllStances()
     {
         var comboList = _comboService.GetAllStances();
@@ -204,7 +159,7 @@ public class ComboController : ControllerBase
     }
 
     // Punishers
-    [HttpPost]
+    [HttpPost("punisher")]
     public IActionResult CreatePunisher([FromBody] Combo c)
     {
         try
@@ -217,7 +172,7 @@ public class ComboController : ControllerBase
         }
     }
 
-    [HttpGet]
+    [HttpGet("getPunisher")]
     public IActionResult GetAllPunishers()
     {
         var comboList = _comboService.GetAllPunishers();

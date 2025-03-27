@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using tekkenManifesto.API.Data;
 
@@ -10,9 +11,11 @@ using tekkenManifesto.API.Data;
 namespace tekkenManifesto.API.Migrations
 {
     [DbContext(typeof(TekkenContext))]
-    partial class TekkenContextModelSnapshot : ModelSnapshot
+    [Migration("20250327190207_combosReal")]
+    partial class combosReal
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -98,7 +101,7 @@ namespace tekkenManifesto.API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("CharacterId")
+                    b.Property<int?>("ComboId")
                         .HasColumnType("int");
 
                     b.Property<string>("FramesOB")
@@ -111,7 +114,7 @@ namespace tekkenManifesto.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CharacterId");
+                    b.HasIndex("ComboId");
 
                     b.ToTable("HeatEngager");
                 });
@@ -124,7 +127,7 @@ namespace tekkenManifesto.API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("CharacterId")
+                    b.Property<int?>("ComboId")
                         .HasColumnType("int");
 
                     b.Property<string>("FramesOB")
@@ -137,7 +140,7 @@ namespace tekkenManifesto.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CharacterId");
+                    b.HasIndex("ComboId");
 
                     b.ToTable("Launcher");
                 });
@@ -150,7 +153,7 @@ namespace tekkenManifesto.API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("CharacterId")
+                    b.Property<int?>("ComboId")
                         .HasColumnType("int");
 
                     b.Property<string>("EnemyIs")
@@ -163,7 +166,7 @@ namespace tekkenManifesto.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CharacterId");
+                    b.HasIndex("ComboId");
 
                     b.ToTable("Punisher");
                 });
@@ -176,7 +179,7 @@ namespace tekkenManifesto.API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("CharacterId")
+                    b.Property<int?>("ComboId")
                         .HasColumnType("int");
 
                     b.Property<string>("Input")
@@ -189,7 +192,7 @@ namespace tekkenManifesto.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CharacterId");
+                    b.HasIndex("ComboId");
 
                     b.ToTable("Stance");
                 });
@@ -203,36 +206,39 @@ namespace tekkenManifesto.API.Migrations
 
             modelBuilder.Entity("tekkenManifesto.API.Model.HeatEngager", b =>
                 {
-                    b.HasOne("tekkenManifesto.API.Model.Character", null)
+                    b.HasOne("tekkenManifesto.API.Model.Combo", null)
                         .WithMany("HeatEngagers")
-                        .HasForeignKey("CharacterId");
+                        .HasForeignKey("ComboId");
                 });
 
             modelBuilder.Entity("tekkenManifesto.API.Model.Launcher", b =>
                 {
-                    b.HasOne("tekkenManifesto.API.Model.Character", null)
+                    b.HasOne("tekkenManifesto.API.Model.Combo", null)
                         .WithMany("Launchers")
-                        .HasForeignKey("CharacterId");
+                        .HasForeignKey("ComboId");
                 });
 
             modelBuilder.Entity("tekkenManifesto.API.Model.Punisher", b =>
                 {
-                    b.HasOne("tekkenManifesto.API.Model.Character", null)
+                    b.HasOne("tekkenManifesto.API.Model.Combo", null)
                         .WithMany("Punishers")
-                        .HasForeignKey("CharacterId");
+                        .HasForeignKey("ComboId");
                 });
 
             modelBuilder.Entity("tekkenManifesto.API.Model.Stance", b =>
                 {
-                    b.HasOne("tekkenManifesto.API.Model.Character", null)
+                    b.HasOne("tekkenManifesto.API.Model.Combo", null)
                         .WithMany("Stances")
-                        .HasForeignKey("CharacterId");
+                        .HasForeignKey("ComboId");
                 });
 
             modelBuilder.Entity("tekkenManifesto.API.Model.Character", b =>
                 {
                     b.Navigation("Combos");
+                });
 
+            modelBuilder.Entity("tekkenManifesto.API.Model.Combo", b =>
+                {
                     b.Navigation("HeatEngagers");
 
                     b.Navigation("Launchers");
