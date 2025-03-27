@@ -12,103 +12,44 @@ public class ComboService : IComboService
         _comboRepository = comboRepository;
     }
 
-    public Combo? CreateLauncher(Combo c)
-    {
-        throw new NotImplementedException();
-    }
-
     public Combo? CreateNewCombo(Combo c)
     {
-        throw new NotImplementedException();
-    }
-
-    public Combo? CreateNewHE(Combo c)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Combo? CreatePunisher(Combo c)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Combo? CreateStance(Combo c)
-    {
-        throw new NotImplementedException();
+        return _comboRepository.CreateNewCombo(c);
     }
 
     public Combo? DeleteCombo(int id)
     {
-        throw new NotImplementedException();
-    }
-
-    public Combo? DeleteHE(int id)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Combo? DeleteLauncher(int id)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Combo? DeletePunisher(int id)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Combo? DeleteStance(int id)
-    {
-        throw new NotImplementedException();
+        var deleted = _comboRepository.DeleteCombo(_comboRepository.GetComboById(id));
+        return deleted;
     }
 
     public IEnumerable<Combo> GetAllCombos()
     {
-        throw new NotImplementedException();
-    }
-
-    public IEnumerable<Combo> GetAllHE()
-    {
-        throw new NotImplementedException();
-    }
-
-    public IEnumerable<Combo> GetAllLaunchers()
-    {
-        throw new NotImplementedException();
-    }
-
-    public IEnumerable<Combo> GetAllPunishers()
-    {
-        throw new NotImplementedException();
-    }
-
-    public IEnumerable<Combo> GetAllStances()
-    {
-        throw new NotImplementedException();
+        var comboList = _comboRepository.GetAllCombos();
+        return comboList;
     }
 
     public Combo UpdateCombo(Combo update, int id)
     {
-        throw new NotImplementedException();
-    }
+        var updated = _comboRepository.GetComboById(id);
 
-    public Combo UpdateHE(Combo update, int id)
-    {
-        throw new NotImplementedException();
-    }
+        if (!string.IsNullOrWhiteSpace(update.TextNotation))
+        {
+            updated.TextNotation = update.TextNotation;
+        }
 
-    public Combo UpdateLauncher(Combo update, int id)
-    {
-        throw new NotImplementedException();
-    }
+        if (!string.IsNullOrWhiteSpace(update.VisualNotationURL))
+        {
+            updated.VisualNotationURL = update.VisualNotationURL;
+        }
 
-    public Combo UpdatePunisher(Combo update, int id)
-    {
-        throw new NotImplementedException();
-    }
+        if (!string.IsNullOrWhiteSpace(update.Damage.ToString()))
+        {
+            updated.Damage = update.Damage;
+        }
 
-    public Combo UpdateStance(Combo update, int id)
-    {
-        throw new NotImplementedException();
+        updated = _comboRepository.UpdateCombo(updated);
+
+        return updated;
     }
 }
