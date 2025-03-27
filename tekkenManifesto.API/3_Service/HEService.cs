@@ -31,7 +31,7 @@ public class HeatEngagerService : IHEService
 
     public HeatEngager UpdateHE(HeatEngager update, int id)
     {
-         var updated = _heRepository.GetHEById(id);
+        var updated = _heRepository.GetHEById(id);
 
         if (!string.IsNullOrWhiteSpace(update.Input))
         {
