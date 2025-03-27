@@ -14,21 +14,33 @@ public class StanceRepository : IStanceRepository
 
     public Stance? CreateStance(Stance c)
     {
-        throw new NotImplementedException();
+        _tekkenContext.Stances.Add(c);
+        _tekkenContext.SaveChanges();
+        return c;
     }
 
-    public Stance? DeleteStance(int id)
+    public Stance? DeleteStance(Stance stance)
     {
-        throw new NotImplementedException();
+        _tekkenContext.Stances.Remove(stance);
+        _tekkenContext.SaveChanges();
+        return stance;
     }
 
     public IEnumerable<Stance> GetAllStances()
     {
-        throw new NotImplementedException();
+        return _tekkenContext.Stances.ToList();
     }
 
-    public Stance UpdateStance(Stance update, int id)
+    public Stance GetStanceById(int id)
     {
-        throw new NotImplementedException();
+        var stance = _tekkenContext.Stances.Find(id);
+        return stance;
+    }
+
+    public Stance UpdateStance(Stance update)
+    {
+        _tekkenContext.Stances.Update(update);
+        _tekkenContext.SaveChanges();
+        return update;
     }
 }

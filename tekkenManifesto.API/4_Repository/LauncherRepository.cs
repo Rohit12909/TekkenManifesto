@@ -14,21 +14,33 @@ public class LauncherRepository : ILauncherRepository
 
     public Launcher? CreateLauncher(Launcher c)
     {
-        throw new NotImplementedException();
+        _tekkenContext.Launchers.Add(c);
+        _tekkenContext.SaveChanges();
+        return c;
     }
 
-    public Launcher? DeleteLauncher(int id)
+    public Launcher? DeleteLauncher(Launcher launch)
     {
-        throw new NotImplementedException();
+        _tekkenContext.Launchers.Remove(launch);
+        _tekkenContext.SaveChanges();
+        return launch;
     }
 
     public IEnumerable<Launcher> GetAllLaunchers()
     {
-        throw new NotImplementedException();
+        return _tekkenContext.Launchers.ToList();
     }
 
-    public Launcher UpdateLauncher(Launcher update, int id)
+    public Launcher GetLauncherById(int id)
     {
-        throw new NotImplementedException();
+        var launch = _tekkenContext.Launchers.Find(id);
+        return launch;
+    }
+
+    public Launcher UpdateLauncher(Launcher update)
+    {
+        _tekkenContext.Launchers.Update(update);
+        _tekkenContext.SaveChanges();
+        return update;
     }
 }

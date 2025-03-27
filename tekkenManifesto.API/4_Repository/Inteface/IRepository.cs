@@ -16,38 +16,43 @@ public interface IComboRepository
 {
     Combo? CreateNewCombo(Combo c);
     IEnumerable<Combo> GetAllCombos();
-    Combo UpdateCombo(Combo update, int id);
-    Combo? DeleteCombo(int id);
+    Combo GetComboById(int id);
+    Combo UpdateCombo(Combo update);
+    Combo? DeleteCombo(Combo com);
 }
 
 public interface IHERepository
 {
     HeatEngager? CreateNewHE(HeatEngager c);
     IEnumerable<HeatEngager> GetAllHE();
-    HeatEngager UpdateHE(HeatEngager update, int id);
-    HeatEngager? DeleteHE(int id);
+    HeatEngager GetHEById(int id);
+    HeatEngager UpdateHE(HeatEngager update);
+    HeatEngager? DeleteHE(HeatEngager he);
 }
 
 public interface ILauncherRepository
 {
     Launcher? CreateLauncher(Launcher c);
     IEnumerable<Launcher> GetAllLaunchers();
-    Launcher UpdateLauncher(Launcher update, int id);
-    Launcher? DeleteLauncher(int id);
+    Launcher GetLauncherById(int id);
+    Launcher UpdateLauncher(Launcher update);
+    Launcher? DeleteLauncher(Launcher launch);
 }
 
 public interface IPunisherRepository
 {
     Punisher? CreatePunisher(Punisher c);
     IEnumerable<Punisher> GetAllPunishers();
-    Punisher UpdatePunisher(Punisher update, int id);
-    Punisher? DeletePunisher(int id);
+    Punisher GetPunisherById(int id);
+    Punisher UpdatePunisher(Punisher update);
+    Punisher? DeletePunisher(Punisher punish);
 }
 
 public interface IStanceRepository
 {
     Stance? CreateStance(Stance c);
     IEnumerable<Stance> GetAllStances();
-    Stance UpdateStance(Stance update, int id);
-    Stance? DeleteStance(int id);
+    Stance GetStanceById(int id);
+    Stance UpdateStance(Stance update);
+    Stance? DeleteStance(Stance stance);
 }

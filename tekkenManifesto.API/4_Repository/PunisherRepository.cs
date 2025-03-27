@@ -14,21 +14,33 @@ public class PunisherRepository : IPunisherRepository
 
     public Punisher? CreatePunisher(Punisher c)
     {
-        throw new NotImplementedException();
+        _tekkenContext.Punishers.Add(c);
+        _tekkenContext.SaveChanges();
+        return c;
     }
 
-    public Punisher? DeletePunisher(int id)
+    public Punisher? DeletePunisher(Punisher punish)
     {
-        throw new NotImplementedException();
+        _tekkenContext.Punishers.Remove(punish);
+        _tekkenContext.SaveChanges();
+        return punish;
     }
 
     public IEnumerable<Punisher> GetAllPunishers()
     {
-        throw new NotImplementedException();
+        return _tekkenContext.Punishers.ToList();
     }
 
-    public Punisher UpdatePunisher(Punisher update, int id)
+    public Punisher GetPunisherById(int id)
     {
-        throw new NotImplementedException();
+        var punish = _tekkenContext.Punishers.Find(id);
+        return punish;
+    }
+
+    public Punisher UpdatePunisher(Punisher update)
+    {
+        _tekkenContext.Punishers.Update(update);
+        _tekkenContext.SaveChanges();
+        return update;
     }
 }

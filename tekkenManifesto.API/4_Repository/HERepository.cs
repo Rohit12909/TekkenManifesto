@@ -14,21 +14,33 @@ public class HERepository : IHERepository
 
     public HeatEngager? CreateNewHE(HeatEngager c)
     {
-        throw new NotImplementedException();
+        _tekkenContext.HeatEngagers.Add(c);
+        _tekkenContext.SaveChanges();
+        return c;
     }
 
-    public HeatEngager? DeleteHE(int id)
+    public HeatEngager? DeleteHE(HeatEngager he)
     {
-        throw new NotImplementedException();
+        _tekkenContext.HeatEngagers.Remove(he);
+        _tekkenContext.SaveChanges();
+        return he;
     }
 
     public IEnumerable<HeatEngager> GetAllHE()
     {
-        throw new NotImplementedException();
+        return _tekkenContext.HeatEngagers.ToList();
     }
 
-    public HeatEngager UpdateHE(HeatEngager update, int id)
+    public HeatEngager GetHEById(int id)
     {
-        throw new NotImplementedException();
+        var heat = _tekkenContext.HeatEngagers.Find(id);
+        return heat;
+    }
+
+    public HeatEngager UpdateHE(HeatEngager update)
+    {
+        _tekkenContext.HeatEngagers.Update(update);
+        _tekkenContext.SaveChanges();
+        return update;
     }
 }

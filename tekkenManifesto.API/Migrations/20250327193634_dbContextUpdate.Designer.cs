@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using tekkenManifesto.API.Data;
 
@@ -10,9 +11,11 @@ using tekkenManifesto.API.Data;
 namespace tekkenManifesto.API.Migrations
 {
     [DbContext(typeof(TekkenContext))]
-    partial class TekkenContextModelSnapshot : ModelSnapshot
+    [Migration("20250327193634_dbContextUpdate")]
+    partial class dbContextUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
