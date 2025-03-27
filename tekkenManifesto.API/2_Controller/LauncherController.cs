@@ -14,4 +14,51 @@ public class LauncherController : ControllerBase
     {
         _comboService = comboService;
     }
+
+    // Launchers
+    [HttpPost]
+    public IActionResult CreateLauncher([FromBody] Combo c)
+    {
+        try
+        {
+            return Ok(c);
+        }
+        catch (Exception e)
+        {
+            return NotFound(e.Message);
+        }
+    }
+
+    [HttpGet]
+    public IActionResult GetAllLaunchers()
+    {
+        var comboList = _comboService.GetAllLaunchers();
+        return Ok(comboList);
+    }
+
+    [HttpPatch("updateLauncher/{id}")]
+    public IActionResult UpdateLauncher([FromBody] Combo update, int id)
+    {
+        try
+        {
+            return Ok();
+        }
+        catch (Exception e)
+        {
+            return Conflict(e.Message);
+        }
+    }
+
+    [HttpDelete("deleteLauncher/{id}")]
+    public IActionResult DeleteLauncher(int id)
+    {
+        try
+        {
+            return Ok();
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
 }

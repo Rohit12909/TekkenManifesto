@@ -29,7 +29,7 @@ public class HeatEngagerController : ControllerBase
         }
     }
 
-    [HttpGet("getHE")]
+    [HttpGet]
     public IActionResult GetAllHE()
     {
         var comboList = _comboService.GetAllHE();
