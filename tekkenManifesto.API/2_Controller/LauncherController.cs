@@ -8,11 +8,11 @@ namespace tekkenManifesto.API.Controller;
 [ApiController]
 public class LauncherController : ControllerBase
 {
-    private readonly IComboService _comboService;
+    private readonly ILauncherService _launcherService;
 
-    public LauncherController(IComboService comboService)
+    public LauncherController(ILauncherService launcherService)
     {
-        _comboService = comboService;
+        _launcherService = launcherService;
     }
 
     // Launchers
@@ -32,7 +32,7 @@ public class LauncherController : ControllerBase
     [HttpGet]
     public IActionResult GetAllLaunchers()
     {
-        var comboList = _comboService.GetAllLaunchers();
+        var comboList = _launcherService.GetAllLaunchers();
         return Ok(comboList);
     }
 

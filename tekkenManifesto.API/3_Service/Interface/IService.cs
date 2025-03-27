@@ -20,27 +20,40 @@ public interface IComboService
     Combo UpdateCombo(Combo update, int id);
     Combo? DeleteCombo(int id);
 
+}
+
+public interface IHEService
+{
     // Heat Engagers
-    Combo? CreateNewHE(Combo c);
-    IEnumerable<Combo> GetAllHE();
-    Combo UpdateHE(Combo update, int id);
-    Combo? DeleteHE(int id);
+    HeatEngager? CreateNewHE(HeatEngager c);
+    IEnumerable<HeatEngager> GetAllHE();
+    HeatEngager UpdateHE(HeatEngager update, int id);
+    HeatEngager? DeleteHE(int id);
+}
 
+public interface ILauncherService
+{
     // Launchers
-    Combo? CreateLauncher(Combo c);
-    IEnumerable<Combo> GetAllLaunchers();
-    Combo UpdateLauncher(Combo update, int id);
-    Combo? DeleteLauncher(int id);
+    Launcher? CreateLauncher(Launcher c);
+    IEnumerable<Launcher> GetAllLaunchers();
+    Launcher UpdateLauncher(Launcher update, int id);
+    Launcher? DeleteLauncher(int id);
+}
 
-    // Stances
-    Combo? CreateStance(Combo c);
-    IEnumerable<Combo> GetAllStances();
-    Combo UpdateStance(Combo update, int id);
-    Combo? DeleteStance(int id);
-
+public interface IPunisherService
+{
     // Punishers
-    Combo? CreatePunisher(Combo c);
-    IEnumerable<Combo> GetAllPunishers();
-    Combo UpdatePunisher(Combo update, int id);
-    Combo? DeletePunisher(int id);
+    Punisher? CreatePunisher(Punisher c);
+    IEnumerable<Punisher> GetAllPunishers();
+    Punisher UpdatePunisher(Punisher update, int id);
+    Punisher? DeletePunisher(int id);
+}
+
+public interface IStanceService
+{
+    // Stances
+    Stance? CreateStance(Stance c);
+    IEnumerable<Stance> GetAllStances();
+    Stance UpdateStance(Stance update, int id);
+    Stance? DeleteStance(int id);
 }

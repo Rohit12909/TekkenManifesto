@@ -8,11 +8,11 @@ namespace tekkenManifesto.API.Controller;
 [ApiController]
 public class PunisherController : ControllerBase
 {
-    private readonly IComboService _comboService;
+    private readonly IPunisherService _punisherService;
 
-    public PunisherController(IComboService comboService)
+    public PunisherController(IPunisherService punisherService)
     {
-        _comboService = comboService;
+        _punisherService = punisherService;
     }
 
     // Punishers
@@ -32,7 +32,7 @@ public class PunisherController : ControllerBase
     [HttpGet]
     public IActionResult GetAllPunishers()
     {
-        var comboList = _comboService.GetAllPunishers();
+        var comboList = _punisherService.GetAllPunishers();
         return Ok(comboList);
     }
 

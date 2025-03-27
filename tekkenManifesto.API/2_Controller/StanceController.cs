@@ -8,11 +8,11 @@ namespace tekkenManifesto.API.Controller;
 [ApiController]
 public class StanceController : ControllerBase
 {
-    private readonly IComboService _comboService;
+    private readonly IStanceService _stanceService;
 
-    public StanceController(IComboService comboService)
+    public StanceController(IStanceService stanceService)
     {
-        _comboService = comboService;
+        _stanceService = stanceService;
     }
 
     // Stances
@@ -32,7 +32,7 @@ public class StanceController : ControllerBase
     [HttpGet]
     public IActionResult GetAllStances()
     {
-        var comboList = _comboService.GetAllStances();
+        var comboList = _stanceService.GetAllStances();
         return Ok(comboList);
     }
 

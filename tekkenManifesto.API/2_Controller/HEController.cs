@@ -8,16 +8,16 @@ namespace tekkenManifesto.API.Controller;
 [ApiController]
 public class HeatEngagerController : ControllerBase
 {
-    private readonly IComboService _comboService;
+    private readonly IHEService _heService;
 
-    public HeatEngagerController(IComboService comboService)
+    public HeatEngagerController(IHEService heService)
     {
-        _comboService = comboService;
+        _heService = heService;
     }
 
      // Heat Engagers
     [HttpPost]
-    public IActionResult CreateNewHE([FromBody] Combo he)
+    public IActionResult CreateNewHE([FromBody] HeatEngager he)
     {
         try
         {
@@ -32,12 +32,12 @@ public class HeatEngagerController : ControllerBase
     [HttpGet]
     public IActionResult GetAllHE()
     {
-        var comboList = _comboService.GetAllHE();
+        var comboList = _heService.GetAllHE();
         return Ok(comboList);
     }
 
     [HttpPatch("updateHE/{id}")]
-    public IActionResult UpdateHE([FromBody] Combo update, int id)
+    public IActionResult UpdateHE([FromBody] HeatEngager update, int id)
     {
         try
         {
