@@ -37,6 +37,13 @@ public class CharController : ControllerBase
         return Ok(charList);
     }
 
+    [HttpGet("char/{name}")]
+    public IActionResult GetCharByName(string name)
+    {
+        var charList = _charService.GetCharByName(name);
+        return Ok(charList);
+    }
+
     [HttpPatch("update/{id}")]
     public IActionResult UpdateChar([FromBody] CharInDTO update, int id)
     {

@@ -1,5 +1,8 @@
+using Microsoft.EntityFrameworkCore;
+
 namespace tekkenManifesto.API.Model;
 
+[Index(nameof(Name), IsUnique = true)]
 public class Character
 {
     public int Id { get; set; }

@@ -33,6 +33,12 @@ public class CharService : ICharService
         return _mapper.Map<List<CharOutDTO>>(charList);
     }
 
+    public CharOutDTO GetCharByName(string name)
+    {
+        var charList = _charRepository.GetCharByName(name);
+        return _mapper.Map<CharOutDTO>(charList);
+    }
+
     public CharOutDTO UpdateChar(CharInDTO update, int id)
     {
         var updated = _charRepository.GetCharById(id);

@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using tekkenManifesto.API.Data;
 using tekkenManifesto.API.Model;
 
@@ -39,7 +40,9 @@ public class CharRepository : ICharRepository
 
     public Character GetCharByName(string name)
     {
-        var chars = _tekkenContext.Chars.Where(c => c.Name == name).First();
+        var chars = _tekkenContext.Chars
+            .Include(c => c.Combos)
+            .Where(c => c.Name == name).First();
         return chars;
     }
 

@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using tekkenManifesto.API.Data;
 
@@ -10,9 +11,11 @@ using tekkenManifesto.API.Data;
 namespace tekkenManifesto.API.Migrations
 {
     [DbContext(typeof(TekkenContext))]
-    partial class TekkenContextModelSnapshot : ModelSnapshot
+    [Migration("20250327203411_charIdToCombo")]
+    partial class charIdToCombo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,7 +50,7 @@ namespace tekkenManifesto.API.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Origin")
                         .IsRequired()
@@ -57,9 +60,6 @@ namespace tekkenManifesto.API.Migrations
                         .HasColumnType("bit");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("Name")
-                        .IsUnique();
 
                     b.ToTable("Chars");
                 });
@@ -72,9 +72,6 @@ namespace tekkenManifesto.API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("CharacterId")
-                        .HasColumnType("int");
-
                     b.Property<int>("Damage")
                         .HasColumnType("int");
 
@@ -86,9 +83,12 @@ namespace tekkenManifesto.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("characterId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("CharacterId");
+                    b.HasIndex("characterId");
 
                     b.ToTable("Combos");
                 });
@@ -201,7 +201,9 @@ namespace tekkenManifesto.API.Migrations
                 {
                     b.HasOne("tekkenManifesto.API.Model.Character", null)
                         .WithMany("Combos")
-                        .HasForeignKey("CharacterId");
+                        .HasForeignKey("characterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("tekkenManifesto.API.Model.HeatEngager", b =>

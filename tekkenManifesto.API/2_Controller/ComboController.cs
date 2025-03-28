@@ -16,11 +16,12 @@ public class ComboController : ControllerBase
     }
 
     // COMBOS
-    [HttpPost]
-    public IActionResult CreateNewCombo([FromBody] Combo c)
+    [HttpPost("{name}")]
+    public IActionResult CreateNewCombo([FromBody] Combo c, string name)
     {
         try
         {
+            var combos = _comboService.CreateNewCombo(c, name);
             return Ok(c);
         }
         catch (Exception e)
@@ -41,6 +42,7 @@ public class ComboController : ControllerBase
     {
         try
         {
+            var updated = _comboService.UpdateCombo(update, id);
             return Ok();
         }
         catch (Exception e)
@@ -54,6 +56,7 @@ public class ComboController : ControllerBase
     {
         try
         {
+            var deleteChar = _comboService.DeleteCombo(id);
             return Ok();
         }
         catch (Exception e)

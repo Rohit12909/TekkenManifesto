@@ -6,14 +6,42 @@ namespace tekkenManifesto.API.Service;
 public class ComboService : IComboService
 {
     private readonly IComboRepository _comboRepository;
+    private readonly ICharRepository _charRepository;
 
-    public ComboService(IComboRepository comboRepository)
+    public ComboService(IComboRepository comboRepository, ICharRepository charRepository)
     {
         _comboRepository = comboRepository;
+        _charRepository = charRepository;
     }
 
-    public Combo? CreateNewCombo(Combo c)
+    // WORK ON THIS
+    public Combo? CreateNewCombo(Combo c, string name) 
     {
+        var chars = _charRepository.GetCharByName(name);
+        bool comboExists = false;
+
+        foreach (Combo text in chars.Combos)
+        {
+            if (!text.TextNotation.Equals(c.TextNotation))
+            {
+                comboExists = false;
+            }
+            else
+            {
+                comboExists = true;
+                break;
+            }
+        }
+
+        if (!comboExists)
+        {
+            chars.Combos.Add(c);
+        }
+        else
+        {
+            throw new Exception("This combo already exists!");
+        }
+        
         return _comboRepository.CreateNewCombo(c);
     }
 

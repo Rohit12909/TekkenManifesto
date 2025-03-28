@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using tekkenManifesto.API.Data;
 
@@ -10,9 +11,11 @@ using tekkenManifesto.API.Data;
 namespace tekkenManifesto.API.Migrations
 {
     [DbContext(typeof(TekkenContext))]
-    partial class TekkenContextModelSnapshot : ModelSnapshot
+    [Migration("20250327203557_charIdToCombo2")]
+    partial class charIdToCombo2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,7 +50,7 @@ namespace tekkenManifesto.API.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Origin")
                         .IsRequired()
@@ -57,9 +60,6 @@ namespace tekkenManifesto.API.Migrations
                         .HasColumnType("bit");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("Name")
-                        .IsUnique();
 
                     b.ToTable("Chars");
                 });
@@ -85,6 +85,9 @@ namespace tekkenManifesto.API.Migrations
                     b.Property<string>("VisualNotationURL")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("charsComboId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
