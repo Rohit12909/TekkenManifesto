@@ -6,15 +6,41 @@ namespace tekkenManifesto.API.Service;
 public class PunisherService : IPunisherService
 {
     private readonly IPunisherRepository _punisherRepository;
+    private readonly ICharRepository _charRepository;
 
-    public PunisherService(IPunisherRepository punisherRepository)
+    public PunisherService(IPunisherRepository punisherRepository, ICharRepository charRepository)
     {
         _punisherRepository = punisherRepository;
+        _charRepository = charRepository;
     }
 
-    public Punisher? CreatePunisher(Punisher c)
+    public Punisher? CreatePunisher(Punisher p, string name)
     {
-        return _punisherRepository.CreatePunisher(c);
+        var chars = _charRepository.GetCharByName(name);
+        bool punishExists = false;
+
+        foreach (Punisher pun in chars.Punishers)
+        {
+            if (!pun.Input.Equals(p.Input))
+            {
+                punishExists = false;
+            }
+            else
+            {
+                punishExists = true;
+                break;
+            }
+        }
+
+        if (!punishExists)
+        {
+            chars.Punishers.Add(p);
+        }
+        else
+        {
+            throw new Exception("This punisher already exists!");
+        }
+        return _punisherRepository.CreatePunisher(p);
     }
 
     public Punisher? DeletePunisher(int id)

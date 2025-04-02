@@ -24,4 +24,8 @@ public class CharOutDTO
     public string HighestRank { get; set; } = "";
     public bool Played { get; set; }
     public List<Combo> Combos { get; set; } = [];
+    public List<HeatEngager> HeatEngagers { get; set; } = [];
+    public List<Launcher> Launchers { get; set; } = [];
+    public List<Stance> Stances { get; set; } = [];
+    public List<Punisher> Punishers { get; set; } = [];
 }

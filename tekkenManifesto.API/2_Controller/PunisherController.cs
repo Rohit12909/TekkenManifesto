@@ -16,12 +16,13 @@ public class PunisherController : ControllerBase
     }
 
     // Punishers
-    [HttpPost]
-    public IActionResult CreatePunisher([FromBody] Combo c)
+    [HttpPost("{name}")]
+    public IActionResult CreatePunisher([FromBody] Punisher p, string name)
     {
         try
         {
-            return Ok(c);
+            var punish = _punisherService.CreatePunisher(p, name);
+            return Ok(p);
         }
         catch (Exception e)
         {
@@ -32,15 +33,16 @@ public class PunisherController : ControllerBase
     [HttpGet]
     public IActionResult GetAllPunishers()
     {
-        var comboList = _punisherService.GetAllPunishers();
-        return Ok(comboList);
+        var punishList = _punisherService.GetAllPunishers();
+        return Ok(punishList);
     }
 
     [HttpPatch("updatePunisher/{id}")]
-    public IActionResult UpdatePunisher([FromBody] Combo update, int id)
+    public IActionResult UpdatePunisher([FromBody] Punisher update, int id)
     {
         try
         {
+            var updated = _punisherService.UpdatePunisher(update, id);
             return Ok();
         }
         catch (Exception e)
@@ -54,6 +56,7 @@ public class PunisherController : ControllerBase
     {
         try
         {
+            var deletePunish = _punisherService.DeletePunisher(id);
             return Ok();
         }
         catch (Exception e)

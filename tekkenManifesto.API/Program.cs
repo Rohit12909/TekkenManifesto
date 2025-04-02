@@ -17,10 +17,18 @@ builder.Services.AddSwaggerGen();
 // Dependency Inject Services
 builder.Services.AddScoped<ICharService, CharService>();
 builder.Services.AddScoped<IComboService, ComboService>();
+builder.Services.AddScoped<IHEService, HeatEngagerService>();
+builder.Services.AddScoped<ILauncherService, LauncherService>();
+builder.Services.AddScoped<IPunisherService, PunisherService>();
+builder.Services.AddScoped<IStanceService, StanceService>();
 
 // Dependency Inject Repositories
 builder.Services.AddScoped<ICharRepository, CharRepository>();
 builder.Services.AddScoped<IComboRepository, ComboRepository>();
+builder.Services.AddScoped<IHERepository, HERepository>();
+builder.Services.AddScoped<ILauncherRepository, LauncherRepository>();
+builder.Services.AddScoped<IPunisherRepository, PunisherRepository>();
+builder.Services.AddScoped<IStanceRepository, StanceRepository>();
 
 //Add AutoMapper
 builder.Services.AddAutoMapper(typeof(MappingProfile));

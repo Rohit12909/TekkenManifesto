@@ -6,14 +6,40 @@ namespace tekkenManifesto.API.Service;
 public class StanceService : IStanceService
 {
     private readonly IStanceRepository _stanceRepository;
+    private readonly ICharRepository _charRepository;
 
-    public StanceService(IStanceRepository stanceRepository)
+    public StanceService(IStanceRepository stanceRepository, ICharRepository charRepository)
     {
         _stanceRepository = stanceRepository;
+        _charRepository = charRepository;
     }
 
-    public Stance? CreateStance(Stance c)
+    public Stance? CreateStance(Stance c, string name)
     {
+        var chars = _charRepository.GetCharByName(name);
+        bool stanceExists = false;
+
+        foreach (Stance s in chars.Stances)
+        {
+            if (!s.Name.Equals(c.Name))
+            {
+                stanceExists = false;
+            }
+            else
+            {
+                stanceExists = true;
+                break;
+            }
+        }
+
+        if (!stanceExists)
+        {
+            chars.Stances.Add(c);
+        }
+        else
+        {
+            throw new Exception("This stance already exists!");
+        }
         return _stanceRepository.CreateStance(c);
     }
 

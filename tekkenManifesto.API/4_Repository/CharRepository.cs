@@ -42,6 +42,10 @@ public class CharRepository : ICharRepository
     {
         var chars = _tekkenContext.Chars
             .Include(c => c.Combos)
+            .Include(h => h.HeatEngagers)
+            .Include(l => l.Launchers)
+            .Include(p => p.Punishers)
+            .Include(s => s.Stances)
             .Where(c => c.Name == name).First();
         return chars;
     }

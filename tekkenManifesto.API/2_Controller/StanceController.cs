@@ -16,12 +16,13 @@ public class StanceController : ControllerBase
     }
 
     // Stances
-    [HttpPost]
-    public IActionResult CreateStance([FromBody] Combo c)
+    [HttpPost("{name}")]
+    public IActionResult CreateStance([FromBody] Stance stan, string name)
     {
         try
         {
-            return Ok(c);
+            var stances = _stanceService.CreateStance(stan, name);
+            return Ok(stan);
         }
         catch (Exception e)
         {
@@ -32,15 +33,16 @@ public class StanceController : ControllerBase
     [HttpGet]
     public IActionResult GetAllStances()
     {
-        var comboList = _stanceService.GetAllStances();
-        return Ok(comboList);
+        var stanceList = _stanceService.GetAllStances();
+        return Ok(stanceList);
     }
 
     [HttpPatch("updateStance/{id}")]
-    public IActionResult UpdateStance([FromBody] Combo update, int id)
+    public IActionResult UpdateStance([FromBody] Stance update, int id)
     {
         try
         {
+            var updated = _stanceService.UpdateStance(update, id);
             return Ok();
         }
         catch (Exception e)
@@ -54,6 +56,7 @@ public class StanceController : ControllerBase
     {
         try
         {
+            var deleteStance = _stanceService.DeleteStance(id);
             return Ok();
         }
         catch (Exception e)
