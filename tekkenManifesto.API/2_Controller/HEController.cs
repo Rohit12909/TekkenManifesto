@@ -16,11 +16,12 @@ public class HeatEngagerController : ControllerBase
     }
 
      // Heat Engagers
-    [HttpPost]
-    public IActionResult CreateNewHE([FromBody] HeatEngager he)
+    [HttpPost("{name}")]
+    public IActionResult CreateNewHE([FromBody] HeatEngager he, string name)
     {
         try
         {
+            var engagers = _heService.CreateNewHE(he, name);
             return Ok(he);
         }
         catch (Exception e)
@@ -41,6 +42,7 @@ public class HeatEngagerController : ControllerBase
     {
         try
         {
+            var updated = _heService.UpdateHE(update, id);
             return Ok();
         }
         catch (Exception e)
@@ -54,6 +56,7 @@ public class HeatEngagerController : ControllerBase
     {
         try
         {
+            var deleteHE = _heService.DeleteHE(id);
             return Ok();
         }
         catch (Exception e)
