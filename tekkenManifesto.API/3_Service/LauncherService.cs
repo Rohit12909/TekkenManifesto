@@ -6,15 +6,41 @@ namespace tekkenManifesto.API.Service;
 public class LauncherService : ILauncherService
 {
     private readonly ILauncherRepository _launcherRepository;
+    private readonly ICharRepository _charRepository;
 
-    public LauncherService(ILauncherRepository launcherRepository)
+    public LauncherService(ILauncherRepository launcherRepository, ICharRepository charRepository)
     {
         _launcherRepository = launcherRepository;
+        _charRepository = charRepository;
     }
 
-    public Launcher? CreateLauncher(Launcher c)
+    public Launcher? CreateLauncher(Launcher launch, string name)
     {
-        return _launcherRepository.CreateLauncher(c);
+        var chars = _charRepository.GetCharByName(name);
+        bool launcherExists = false;
+
+        foreach (Launcher l in chars.Launchers)
+        {
+            if (!l.Input.Equals(launch.Input))
+            {
+                launcherExists = false;
+            }
+            else
+            {
+                launcherExists = true;
+                break;
+            }
+        }
+
+        if (!launcherExists)
+        {
+            chars.Launchers.Add(launch);
+        }
+        else
+        {
+            throw new Exception("This launcher already exists!");
+        }
+        return _launcherRepository.CreateLauncher(launch);
     }
 
     public Launcher? DeleteLauncher(int id)

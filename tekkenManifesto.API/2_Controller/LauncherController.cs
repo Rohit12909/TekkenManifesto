@@ -16,12 +16,13 @@ public class LauncherController : ControllerBase
     }
 
     // Launchers
-    [HttpPost]
-    public IActionResult CreateLauncher([FromBody] Combo c)
+    [HttpPost("{name}")]
+    public IActionResult CreateLauncher([FromBody] Launcher launch, string name)
     {
         try
         {
-            return Ok(c);
+            var launchers = _launcherService.CreateLauncher(launch, name);
+            return Ok(launch);
         }
         catch (Exception e)
         {
@@ -32,15 +33,16 @@ public class LauncherController : ControllerBase
     [HttpGet]
     public IActionResult GetAllLaunchers()
     {
-        var comboList = _launcherService.GetAllLaunchers();
-        return Ok(comboList);
+        var launchList = _launcherService.GetAllLaunchers();
+        return Ok(launchList);
     }
 
     [HttpPatch("updateLauncher/{id}")]
-    public IActionResult UpdateLauncher([FromBody] Combo update, int id)
+    public IActionResult UpdateLauncher([FromBody] Launcher update, int id)
     {
         try
         {
+            var updated = _launcherService.UpdateLauncher(update, id);
             return Ok();
         }
         catch (Exception e)
@@ -54,6 +56,7 @@ public class LauncherController : ControllerBase
     {
         try
         {
+            var deleteLauncher = _launcherService.DeleteLauncher(id);
             return Ok();
         }
         catch (Exception e)
