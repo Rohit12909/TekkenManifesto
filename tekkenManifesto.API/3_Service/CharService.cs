@@ -21,9 +21,9 @@ public class CharService : ICharService
         return _mapper.Map<CharOutDTO>(_charRepository.CreateNewChar(_mapper.Map<Character>(newChar)));
     }
 
-    public CharOutDTO? DeleteChar(int id)
+    public CharOutDTO? DeleteChar(string name)
     {
-        var deletedChar = _charRepository.DeleteChar(_charRepository.GetCharById(id));
+        var deletedChar = _charRepository.DeleteChar(_charRepository.GetCharByName(name));
         return _mapper.Map<CharOutDTO>(deletedChar);
     }
 

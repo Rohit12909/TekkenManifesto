@@ -10,7 +10,7 @@ public interface ICharService
     CharOutDTO? GetCharByName(string name);
     
     CharOutDTO UpdateChar(CharInDTO update, int id);
-    CharOutDTO? DeleteChar(int id);
+    CharOutDTO? DeleteChar(string name);
     
 }
 

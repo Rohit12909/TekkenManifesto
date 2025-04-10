@@ -59,11 +59,11 @@ public class CharController : ControllerBase
     }
 
     [HttpDelete("delete/{id}")]
-    public IActionResult DeleteChar(int id)
+    public IActionResult DeleteChar(string name)
     {
         try
         {
-            var deleteChar = _charService.DeleteChar(id);
+            var deleteChar = _charService.DeleteChar(name);
             return Ok(deleteChar);
         }
         catch (Exception e)

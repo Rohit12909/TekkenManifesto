@@ -51,7 +51,7 @@ public class HeatEngagerController : ControllerBase
         }
     }
 
-    [HttpDelete("deleteHE/{id}")]
+    [HttpDelete("deleteHE/{name}")]
     public IActionResult DeleteHE(int id)
     {
         try

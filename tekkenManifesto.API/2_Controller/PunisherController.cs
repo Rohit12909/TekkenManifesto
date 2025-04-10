@@ -51,7 +51,7 @@ public class PunisherController : ControllerBase
         }
     }
 
-    [HttpDelete("deletePunisher/{id}")]
+    [HttpDelete("deletePunisher/{name}")]
     public IActionResult DeletePunisher(int id)
     {
         try

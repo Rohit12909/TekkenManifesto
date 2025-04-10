@@ -51,7 +51,7 @@ public class LauncherController : ControllerBase
         }
     }
 
-    [HttpDelete("deleteLauncher/{id}")]
+    [HttpDelete("deleteLauncher/{name}")]
     public IActionResult DeleteLauncher(int id)
     {
         try

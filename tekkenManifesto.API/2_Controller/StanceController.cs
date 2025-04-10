@@ -51,7 +51,7 @@ public class StanceController : ControllerBase
         }
     }
 
-    [HttpDelete("deleteStance/{id}")]
+    [HttpDelete("deleteStance/{name}")]
     public IActionResult DeleteStance(int id)
     {
         try
