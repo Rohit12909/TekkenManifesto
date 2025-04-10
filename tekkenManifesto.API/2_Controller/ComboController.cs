@@ -51,7 +51,7 @@ public class ComboController : ControllerBase
         }
     }
 
-    [HttpDelete("delete/{name}")]
+    [HttpDelete("delete/{id}")]
     public IActionResult DeleteCombo(int id)
     {
         try
