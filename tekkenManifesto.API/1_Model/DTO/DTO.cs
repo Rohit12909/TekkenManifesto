@@ -21,6 +21,7 @@ public class CharOutDTO
     public string Name { get; set; } = "";
     public string Origin { get; set; } = "";
     public string FightingStyle { get; set; } = "";
+    public string History { get; set; } = "";
     public string HighestRank { get; set; } = "";
     public bool Played { get; set; }
     public List<Combo> Combos { get; set; } = [];
